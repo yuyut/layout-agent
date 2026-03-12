@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount local data/ so users can drop in their own DXF/Excel files
+      - ./data:/app/data
+      # Mount output/ so generated files are accessible on the host
+      - ./output:/app/output
