@@ -1,7 +1,7 @@
 [project]
 name = "layout-agent"
 version = "0.2.0"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
   # Core geometry
   "shapely>=2.0",
