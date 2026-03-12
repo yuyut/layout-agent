@@ -14,8 +14,6 @@ build/
 # Output
 output/
 
-# Data (optional — remove if you want to track data files)
-# data/
 
 # IDE
 .vscode/

@@ -30,7 +30,8 @@ def _load_outline(path_or_bytes, name: str):
     if isinstance(path_or_bytes, bytes):
         with tempfile.NamedTemporaryFile(suffix=".dxf", delete=False) as f:
             f.write(path_or_bytes)
-            return load_outline(f.name)
+            tmp = f.name
+        return load_outline(tmp)
     return load_outline(path_or_bytes)
 
 
@@ -40,7 +41,8 @@ def _load_excel(path_or_bytes, name: str):
     if isinstance(path_or_bytes, bytes):
         with tempfile.NamedTemporaryFile(suffix=".xlsx", delete=False) as f:
             f.write(path_or_bytes)
-            return load_problem_excel(f.name)
+            tmp = f.name
+        return load_problem_excel(tmp)
     return load_problem_excel(path_or_bytes)
 
 
@@ -49,9 +51,10 @@ def _load_excel(path_or_bytes, name: str):
 with st.sidebar:
 
     # ── Inputs ────────────────────────────────────────────────────────────────
-    st.header("Input Files")
-    dxf_file  = st.file_uploader("DXF building outline", type=["dxf"])
-    xlsx_file = st.file_uploader("Excel workbook (cubes/flows)", type=["xlsx", "xls"])
+    with st.expander("Override input files (optional)"):
+        st.caption("Default data is already loaded. Upload only if you want to use your own files.")
+        dxf_file  = st.file_uploader("DXF building outline", type=["dxf"])
+        xlsx_file = st.file_uploader("Excel workbook (cubes/flows)", type=["xlsx", "xls"])
 
     dxf_src  = dxf_file.read()  if dxf_file  else "data/outline.dxf"
     xlsx_src = xlsx_file.read() if xlsx_file else "data/cubes.xlsx"
